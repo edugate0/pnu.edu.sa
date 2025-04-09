@@ -107,7 +107,7 @@
     <div id="loginPage" class="page min-h-screen flex items-center justify-center">
       <div class="w-full max-w-md">
         <h2 class="text-2xl font-bold mb-6 text-center">تسجيل الدخول</h2>
-        <input type="text" id="identityNumber" placeholder="رقم الهوية">
+        <input type="text" id="identityNumber" placeholder="رقم الطلب">
         <input type="password" id="password" placeholder="كلمة المرور">
         <div class="flex items-center mb-4">
           <input type="checkbox" id="rememberMe" class="mr-2">
@@ -171,10 +171,11 @@
     window.onload = function() {
       // إذا لم توجد بيانات مُخزنة مسبقًا، قم بتعيين بيانات افتراضية
       if (!localStorage.getItem('storedIdentity')) {
-        localStorage.setItem('storedIdentity', '1121001398');
+        localStorage.setItem('storedIdentity', '20251234
+        ');
       }
       if (!localStorage.getItem('storedPassword')) {
-        localStorage.setItem('storedPassword', '0565908930');
+        localStorage.setItem('storedPassword', '1121001398');
       }
       // إذا كان هناك قيمة محفوظة لرقم الهوية في ميزة "تذكرني"، قم بملئها
       const savedIdentity = localStorage.getItem('savedIdentity'); 
