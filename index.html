@@ -3,10 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>بوابة القبول - جامعة الأميرة نورة</title>
-  <!-- ملف CSS خارجي لتنسيق الموقع -->
-  <link rel="stylesheet" href="styles.css">
-  <!-- يمكن استخدام Tailwind CSS مع بعض التعديلات -->
+  <title>تسجيل الدخول - بوابة القبول</title>
+  <!-- استخدام Tailwind CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
   <style>
     /* تنسيقات أساسية لمحاكاة تصميم موقع جامعة الأميرة نورة */
@@ -35,7 +33,7 @@
       margin: 0 10px;
     }
     nav a {
-      color: #fff;
+      color: #055d4a;
       font-weight: bold;
       margin: 0 10px;
       text-decoration: none;
@@ -62,9 +60,7 @@
       background-color: #005580;
     }
     input[type="text"],
-    input[type="password"],
-    input[type="date"],
-    input[type="file"] {
+    input[type="password"] {
       width: 100%;
       padding: 10px;
       border: 1px solid #ccc;
@@ -78,9 +74,6 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       margin-bottom: 20px;
     }
-    .hidden {
-      display: none;
-    }
   </style>
 </head>
 <body>
@@ -88,9 +81,9 @@
   <header>
     <div class="container flex items-center justify-between px-4">
       <div class="flex items-center">
-        <!-- استبدل الرابط برابط شعار الجامعة الفعلي -->
+        <!-- استبدل رابط الشعار برابط شعار الجامعة الفعلي -->
         <img src="pnu-logo-ar.svg" alt="شعار الجامعة">
-        <h1> بوابة القبول الاكاديمي </h1>
+        <h1>بوابة القبول الأكاديمي</h1>
       </div>
       <nav>
         <a href="#">الرئيسية</a>
@@ -103,7 +96,6 @@
 
   <!-- المحتوى الرئيسي -->
   <div id="content" class="container mt-8 px-4">
-    <!-- صفحة تسجيل الدخول -->
     <div id="loginPage" class="page min-h-screen flex items-center justify-center">
       <div class="w-full max-w-md">
         <h2 class="text-2xl font-bold mb-6 text-center">تسجيل الدخول</h2>
@@ -114,110 +106,50 @@
           <label for="rememberMe">تذكرني</label>
         </div>
         <button onclick="handleLogin()" class="btn w-full">تسجيل الدخول</button>
-      </div>
-    </div>
-
-    <!-- صفحة تأكيد القبول -->
-    <div id="confirmationPage" class="page hidden min-h-screen flex items-center justify-center">
-      <div class="w-full max-w-lg">
-        <h2 class="text-xl font-bold mb-4">تأكيد القبول</h2>
-        <p class="mb-4">تهانينا! تم تأكيد قبولك في جامعة الأميرة نورة.</p>
-        <div class="bg-gray-100 p-4 rounded mb-6">
-          <p><strong>الطالبة:</strong>   منار حمد مشعل الدويرج </p>
-          <p><strong>رقم الطلب:</strong> 20251234</p>
-          <p><strong> التخصص:</strong> أحياء </p>
-          <p><strong> الدرجة:</strong> بكالوريوس</p>
-
-
-        </div>
-        <button onclick="goToPayment()" class="btn w-full">متابعة إلى سداد الرسوم</button>
-      </div>
-    </div>
-
-    <!-- صفحة سداد الرسوم -->
-    <div id="paymentPage" class="page hidden min-h-screen flex items-center justify-center">
-      <div class="w-full max-w-2xl">
-        <h2 class="text-xl font-bold mb-4">سداد الرسوم الدراسية</h2>
-        <div class="bg-gray-100 p-4 rounded mb-6">
-          <p><strong> يتم سداد الرسوم على الايبان التالي :</strong> SA39050000682021705000</p>
-          <p><strong>المبلغ المطلوب:</strong> 2000 ريال</p>
-          <p><strong>تاريخ الإصدار:</strong> 09/04/2025</p>
-        </div>
-        <form class="space-y-4">
-          <div>
-            <label class="block mb-1 font-medium">اسم البنك</label>
-            <input type="text" placeholder="اسم البنك">
-          </div>
-          <div>
-            <label class="block mb-1 font-medium">رقم الحساب المحول منه</label>
-            <input type="text" placeholder="رقم الحساب">
-          </div>
-          <div>
-            <label class="block mb-1 font-medium">تاريخ السداد</label>
-            <input type="date">
-          </div>
-          <div>
-            <label class="block mb-1 font-medium">رفع إيصال السداد</label>
-            <input type="file">
-          </div>
-          <button type="submit" class="btn w-full">إرسال بيانات السداد</button>
-        </form>
+        <div id="message" class="text-red-500 mt-4 text-center"></div>
       </div>
     </div>
   </div>
 
   <script>
-    // عند تحميل الصفحة، نقوم بالتحقق مما إذا كانت بيانات الاعتماد الافتراضية موجودة في localStorage
-    window.onload = function() {
-      // إذا لم توجد بيانات مُخزنة مسبقًا، قم بتعيين بيانات افتراضية
-      if (!localStorage.getItem('storedIdentity')) {
-        localStorage.setItem('storedIdentity', '20251234
-        ');
-      }
-      if (!localStorage.getItem('storedPassword')) {
-        localStorage.setItem('storedPassword', '1121001398');
-      }
-      // إذا كان هناك قيمة محفوظة لرقم الهوية في ميزة "تذكرني"، قم بملئها
-      const savedIdentity = localStorage.getItem('savedIdentity'); 
-      if (savedIdentity) {
-        document.getElementById('identityNumber').value = savedIdentity;
-        document.getElementById('rememberMe').checked = true;
-      }
-    };
-
-    // دالة معالجة تسجيل الدخول والتحقق من البيانات باستخدام التخزين المحلي
+    // دالة معالجة تسجيل الدخول والتحقق من البيانات
     function handleLogin() {
-      const identityNumber = document.getElementById('identityNumber').value;
-      const password = document.getElementById('password').value;
+      const identityNumber = document.getElementById('identityNumber').value.trim();
+      const password = document.getElementById('password').value.trim();
       const rememberMe = document.getElementById('rememberMe').checked;
-      
-      // استعادة بيانات الاعتماد الافتراضية المخزنة
-      const storedIdentity = localStorage.getItem('storedIdentity');
-      const storedPassword = localStorage.getItem('storedPassword');
-      
-      // التحقق من تطابق البيانات
-      if (identityNumber === storedIdentity && password === storedPassword) {
-        // إذا كان خيار "تذكرني" مفعلًا، نحفظ رقم الهوية في localStorage خاص بميزة التذكر
+      const messageDiv = document.getElementById('message');
+
+      // بيانات الاعتماد الثابتة
+      const validCredentials = [
+        { id: '20251234', pass: '1121001398' },
+        { id: '469225', pass: '1129782775' },
+        { id: '463910', pass: '1132973189' }
+      ];
+
+      // التحقق من بيانات الاعتماد
+      const isValidUser = validCredentials.some(cred => cred.id === identityNumber && cred.pass === password);
+
+      if (isValidUser) {
         if (rememberMe) {
           localStorage.setItem('savedIdentity', identityNumber);
         } else {
           localStorage.removeItem('savedIdentity');
         }
-        goToConfirmation();
+        // إعادة توجيه المستخدم إلى صفحة التأكيد
+        window.location.href = "confirmation.html";
       } else {
-        alert('خطأ في رقم الهوية أو كلمة المرور.');
+        messageDiv.textContent = 'خطأ: رقم الطلب أو كلمة المرور غير صحيحة.';
       }
     }
 
-    // دوال التنقل بين الصفحات
-    function goToConfirmation() {
-      document.getElementById('loginPage').classList.add('hidden');
-      document.getElementById('confirmationPage').classList.remove('hidden');
-    }
-    function goToPayment() {
-      document.getElementById('confirmationPage').classList.add('hidden');
-      document.getElementById('paymentPage').classList.remove('hidden');
-    }
+    // عند تحميل الصفحة، قم بملء رقم الطلب إذا كان محفوظًا
+    window.onload = function() {
+      const savedIdentity = localStorage.getItem('savedIdentity');
+      if (savedIdentity) {
+        document.getElementById('identityNumber').value = savedIdentity;
+        document.getElementById('rememberMe').checked = true;
+      }
+    };
   </script>
 </body>
 </html>
