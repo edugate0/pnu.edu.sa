@@ -99,7 +99,7 @@
     <div id="loginPage" class="page min-h-screen flex items-center justify-center">
       <div class="w-full max-w-md">
         <h2 class="text-2xl font-bold mb-6 text-center">تسجيل الدخول</h2>
-        <input type="text" id="identityNumber" placeholder="رقم الطلب">
+        <input type="text" id="identityNumber" placeholder="الرقم الجامعي">
         <input type="password" id="password" placeholder="كلمة المرور">
         <div class="flex items-center mb-4">
           <input type="checkbox" id="rememberMe" class="mr-2">
@@ -122,7 +122,7 @@
       // بيانات الاعتماد الثابتة
       const validCredentials = [
         { id: '20251234', pass: '1121001398' },
-        { id: '469225', pass: '1129782775' },
+        { id: '469225965', pass: '1121001398' },
         { id: '463910', pass: '1132973189' }
       ];
 
@@ -136,7 +136,7 @@
           localStorage.removeItem('savedIdentity');
         }
         // إعادة توجيه المستخدم إلى صفحة التأكيد
-        window.location.href = "confirmation.html";
+        window.location.href = "banner.html";
       } else {
         messageDiv.textContent = 'خطأ: رقم الطلب أو كلمة المرور غير صحيحة.';
       }
