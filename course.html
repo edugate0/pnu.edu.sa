@@ -5,20 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تسجيل المقررات</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-    .btn {
-      background-color: #03665c;
-      color: #fff;
-      padding: 10px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    </style>
     <script>
-        // دالة لتسجيل المقرر
         function registerCourse(courseCode, courseName, creditHours, day, location) {
             const course = {
                 code: courseCode,
@@ -28,23 +15,13 @@
                 location: location
             };
 
-            // الحصول على المقررات المسجلة من localStorage
             let registeredCourses = JSON.parse(localStorage.getItem('registeredCourses')) || [];
-
-            // إضافة المقرر إلى القائمة
             registeredCourses.push(course);
-
-            // تخزين المقررات في localStorage
             localStorage.setItem('registeredCourses', JSON.stringify(registeredCourses));
-
-            // عرض رسالة تأكيد
             alert("تم تسجيل المقرر بنجاح!");
-
-            // إعادة تحميل الصفحة لتحديث القائمة
             location.reload();
         }
 
-        // دالة لعرض المقررات المسجلة
         function loadRegisteredCourses() {
             const registeredCourses = JSON.parse(localStorage.getItem('registeredCourses')) || [];
             const tableBody = document.getElementById('coursesTableBody');
@@ -63,16 +40,14 @@
             });
         }
 
-        // تحميل المقررات عند تحميل الصفحة
         window.onload = loadRegisteredCourses;
     </script>
 </head>
 <body class="flex min-h-screen bg-gray-100">
-    <!-- الشريط الجانبي -->
     <div class="w-1/4 bg-gray-800 text-white p-6">
         <div class="mb-8">
             <img src="pnu-logo-ar.svg" alt="شعار الجامعة" class="mx-auto mb-4" style="width: 80px;">
-            <h2 class="text-center text-xl font-bold">جامعة الاميرة نورة بنت عبدالرحمن  </h2>
+            <h2 class="text-center text-xl font-bold">جامعة الأميرة نورة بنت عبد الرحمن</h2>
         </div>
         <nav>
             <ul>
@@ -92,18 +67,15 @@
                     <a href="profile.html" class="block py-2 px-4 rounded hover:bg-gray-700">الملف الشخصي</a>
                 </li>
                 <li>
-                    <a href="index.html" class="block py-2 px-4 rounded hover:bg-gray-700">تسجيل الخروج</a>
+                    <a href="login.html" class="block py-2 px-4 rounded hover:bg-gray-700">تسجيل الخروج</a>
                 </li>
-
             </ul>
         </nav>
     </div>
 
-    <!-- المحتوى الرئيسي -->
     <div class="flex-1 p-6">
         <h1 class="text-2xl font-bold mb-6">تسجيل المقررات</h1>
 
-        <!-- قائمة المقررات المتاحة -->
         <div class="mt-6">
             <h2 class="text-xl font-bold mb-4">المقررات المتاحة</h2>
             <table class="min-w-full bg-white rounded shadow-md">
@@ -118,15 +90,59 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <tr>
+                        <td class="py-2 px-4 border-b">ENG101</td>
+                        <td class="py-2 px-4 border-b">اللغة الإنجليزية (1)</td>
+                        <td class="py-2 px-4 border-b">3</td>
+                        <td class="py-2 px-4 border-b">الأحد</td>
+                        <td class="py-2 px-4 border-b">المبنى A، القاعة 101</td>
+                        <td class="py-2 px-4 border-b">
+                            <button onclick="registerCourse('ENG101', 'اللغة الإنجليزية (1)', 3, 'الأحد', 'المبنى A، القاعة 101')" class="bg-green-600 text-white py-1 px-3 rounded hover:bg-green-700 transition">تسجيل</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 border-b">BIO101</td>
+                        <td class="py-2 px-4 border-b">علم الأحياء العام</td>
+                        <td class="py-2 px-4 border-b">3</td>
+                        <td class="py-2 px-4 border-b">الإثنين</td>
+                        <td class="py-2 px-4 border-b">المبنى B، القاعة 102</td>
+                        <td class="py-2 px-4 border-b">
+                            <button onclick="registerCourse('BIO101', 'علم الأحياء العام', 3, 'الإثنين', 'المبنى B، القاعة 102')" class="bg-green-600 text-white py-1 px-3 rounded hover:bg-green-700 transition">تسجيل</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 border-b">CALC101</td>
+                        <td class="py-2 px-4 border-b">حساب التفاضل والتكامل (1)</td>
+                        <td class="py-2 px-4 border-b">3</td>
+                        <td class="py-2 px-4 border-b">الثلاثاء</td>
+                        <td class="py-2 px-4 border-b">المبنى C، القاعة 103</td>
+                        <td class="py-2 px-4 border-b">
+                            <button onclick="registerCourse('CALC101', 'حساب التفاضل والتكامل (1)', 3, 'الثلاثاء', 'المبنى C، القاعة 103')" class="bg-green-600 text-white py-1 px-3 rounded hover:bg-green-700 transition">تسجيل</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 border-b">PHY101</td>
+                        <td class="py-2 px-4 border-b">فيزيـاء عامـة (1)</td>
+                        <td class="py-2 px-4 border-b">3</td>
+                        <td class="py-2 px-4 border-b">الأربعاء</td>
+                        <td class="py-2 px-4 border-b">المبنى D، القاعة 104</td>
+                        <td class="py-2 px-4 border-b">
+                            <button onclick="registerCourse('PHY101', 'فيزيـاء عامـة (1)', 3, 'الأربعاء', 'المبنى D، القاعة 104')" class="bg-green-600 text-white py-1 px-3 rounded hover:bg-green-700 transition">تسجيل</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 border-b">CHEM101</td>
+                        <td class="py-2 px-4 border-b">كيمياء عامة (1)</td>
+                        <td class="py-2 px-4 border-b">3</td>
+                        <td class="py-2 px-4 border-b">الخميس</td>
+                        <td class="py-2 px-4 border-b">المبنى E، القاعة 105</td>
+                        <td class="py-2 px-4 border-b">
+                            <button onclick="registerCourse('CHEM101', 'كيمياء عامة (1)', 3, 'الخميس', 'المبنى E، القاعة 105')" class="bg-green-600 text-white py-1 px-3 rounded hover:bg-green-700 transition">تسجيل</button>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
-            <button onclick="goToPayment()" class="btn w-full">متابعة إلى سداد الرسوم</button>
         </div>
     </div>
-    <script>
-        function goToPayment() {
-          window.location.href = "payment.html";
-        }
-      </script>
-    
 </body>
 </html>
